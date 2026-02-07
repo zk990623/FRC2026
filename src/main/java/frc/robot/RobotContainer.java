@@ -11,18 +11,11 @@ import com.ctre.phoenix6.swerve.SwerveRequest;
 
 import com.pathplanner.lib.commands.FollowPathCommand;
 import com.pathplanner.lib.commands.PathPlannerAuto;
-import com.pathplanner.lib.util.PathPlannerLogging;
-
-import edu.wpi.first.wpilibj.smartdashboard.Field2d;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
-import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.RobotModeTriggers;
 import edu.wpi.first.wpilibj2.command.sysid.SysIdRoutine.Direction;
 import frc.robot.subsystems.Drivetrain.CommandSwerveDrivetrain;
-import frc.robot.subsystems.Drivetrain.SwerveDrivetrainTest;
 import frc.robot.subsystems.Drivetrain.TunerConstants;
 
 public class RobotContainer {
@@ -42,13 +35,8 @@ public class RobotContainer {
     private final CommandXboxController joystick = new CommandXboxController(0);
 
     public final CommandSwerveDrivetrain drivetrain = TunerConstants.createDrivetrain();
-    private final SwerveDrivetrainTest[] tests = new SwerveDrivetrainTest[4];
 
     public RobotContainer() {
-
-        // Swerve Drivetrain Current & Voltage Test
-        for (int i = 0; i < 4; i++)
-            this.tests[i] = new SwerveDrivetrainTest(drivetrain, i);
 
         configureBindings();
 
