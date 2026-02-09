@@ -18,6 +18,14 @@ import edu.wpi.first.wpilibj2.command.sysid.SysIdRoutine.Direction;
 import frc.robot.subsystems.Drivetrain.CommandSwerveDrivetrain;
 import frc.robot.subsystems.Drivetrain.TunerConstants;
 
+
+package frc.robot;
+
+import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
+import frc.robot.subsystems.SimpleMotorSubsystem;
+
+
 public class RobotContainer {
 
     private double MaxSpeed = (4 / 5.47) * TunerConstants.kSpeedAt12Volts.in(MetersPerSecond);
@@ -91,4 +99,24 @@ public class RobotContainer {
         joystick.start().and(joystick.x()).whileTrue(drivetrain.sysIdQuasistatic(Direction.kReverse));
 
     }
+
+    private final SimpleMotorSubsystem motorSubsystem = new SimpleMotorSubsystem();
+
+    private final CommandXboxController driverController = new CommandXboxController(0);
+
+    public RobotContainer() {
+        configureBindings();
+    }
+
+    private void configureBindings() {
+
+        driverController.a()
+            .whileTrue(motorSubsystem.spinCommand(0.5));
+            
+    }
+
+    public Command getAutonomousCommand() {
+        return null;
+    }
+
 }
